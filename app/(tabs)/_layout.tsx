@@ -1,15 +1,16 @@
 import '~/global.css';
 
 import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
-import { Stack, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { NAV_THEME } from '~/lib/constants';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { PortalHost } from '@rn-primitives/portal';
-import { ThemeToggle } from '~/components/ThemeToggle';
 import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
+import { Home, User, Search } from 'lucide-react-native';
+import { ThemeToggle } from '~/components/ThemeToggle';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -51,22 +52,41 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
-      <Stack>
-        <Stack.Screen
-          name="(tabs)"
-          options={{ 
-            title: "Back",
-            headerShown: false 
-          }}
-        />
-        <Stack.Screen
-          name='login'
+      <Tabs>
+        <Tabs.Screen 
+          name='index'
           options={{
-            title: "Login/Sign-Up",
+            title: 'Home',
             headerRight: () => <ThemeToggle />,
+            tabBarLabel: "Home",
+            tabBarIcon: (tabInfo) => (
+              <Home color={tabInfo.color} size={tabInfo.focused ? 22 : 20} />
+            ),
           }}
         />
-      </Stack>
+        <Tabs.Screen 
+          name="search"
+          options={{
+            title: 'Search',
+            headerRight: () => <ThemeToggle />,
+            tabBarLabel: "Search",
+            tabBarIcon: (tabInfo) => (
+              <Search color={tabInfo.color} size={tabInfo.focused ? 22 : 20} />
+            ),
+          }}
+        />
+        <Tabs.Screen 
+          name="profile"
+          options={{
+            title: 'Profile',
+            headerRight: () => <ThemeToggle />,
+            tabBarLabel: "Profile",
+            tabBarIcon: (tabInfo) => (
+              <User color={tabInfo.color} size={tabInfo.focused ? 22 : 20} />
+            ),
+          }}
+        />
+      </Tabs>
       <PortalHost />
     </ThemeProvider>
   );
