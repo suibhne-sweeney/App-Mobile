@@ -5,6 +5,9 @@ import { Button } from '~/components/ui/button';
 import { Text } from '~/components/ui/text';
 import { View } from "react-native";
 import { H1, H3 } from "~/components/ui/typography";
+import { setLogin } from '~/store';
+import { useDispatch } from 'react-redux';
+import { useRouter } from "expo-router";
 
 type FormData = {
   email: string;
@@ -17,16 +20,27 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const PUBLIC_API_URI = process.env.EXPO_PUBLIC_API_URI;
 
   const onSubmit = async (data: FormData) => {
     try {
-      const loggedInResponse = await fetch("http://localhost:5185/api/auth/login", {
+      const loggedInResponse = await fetch(`${PUBLIC_API_URI}/api/auth/login`, {
         method: "POST", 
         headers: {"Content-Type": "application/json"}, 
         body: JSON.stringify(data)
       });       
       const loggedIn = await loggedInResponse.json();
-      console.log(loggedIn);
+      if (loggedIn) {
+        dispatch(
+          setLogin({
+            user: loggedIn.user,
+            token: loggedIn.token,
+          })
+        );
+        router.push("/")
+      }
     } catch (error) {
       console.log(error)
     }
@@ -105,7 +119,7 @@ export default function Login() {
       <View className="items-center">
         <Text className="text-sm text-muted-foreground">
           Don't have an account?{' '}
-          <Text>
+          <Text onPress={() => router.push("/register")}>
             Sign-up
           </Text>
         </Text>
