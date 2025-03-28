@@ -1,3 +1,13 @@
+## [1.2.0] - (2024-03-28)
+- set up types and state managment
+- change index.js file
+- add store/index.ts type
+- add AuthState.ts type
+- add Post.ts type
+- add RootState.ts type
+- add User.ts type
+- add register page
+
 ## [1.1.0] - (2024-03-26)
 - set up pages and routing
 - add login page

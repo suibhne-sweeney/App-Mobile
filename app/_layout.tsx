@@ -1,7 +1,7 @@
 import '~/global.css';
 
 import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
-import { Stack, Tabs } from 'expo-router';
+import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Platform } from 'react-native';
@@ -62,7 +62,14 @@ export default function RootLayout() {
         <Stack.Screen
           name='login'
           options={{
-            title: "Login/Sign-Up",
+            title: "Login",
+            headerRight: () => <ThemeToggle />,
+          }}
+        />
+        <Stack.Screen
+          name='register'
+          options={{
+            title: "Sign-Up",
             headerRight: () => <ThemeToggle />,
           }}
         />

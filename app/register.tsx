@@ -1,17 +1,12 @@
 import { Link } from 'expo-router';
 import { View } from 'react-native';
-import { useSelector } from 'react-redux';
 import { Text } from '~/components/ui/text';
-import { RootState } from '~/types/RootState';
 
-export default function Home() {
-  const user = useSelector((state: RootState) => state.auth.user );
-
-  const fullName = `${user?.firstName} ${user?.lastName}`
+export default function Register() {
     return (
       <View>
         <Text>
-            {fullName}
+            Sign-Up
         </Text>
         <Link href='/login'>
           <Text>Go to Login</Text>

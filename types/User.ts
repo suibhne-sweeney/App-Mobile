@@ -1,0 +1,15 @@
+export interface User{
+    _id: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    picturePath: string,
+    friends: [],
+    location: string,
+    occupation: string,
+    viewedProfile: Number,
+    impressions: Number,
+    createdAt: Date,
+    updatedAt: Date,
+}
