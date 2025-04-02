@@ -1,3 +1,9 @@
+## [1.3.0] - (2024-04-02)
+- set up toast messaging and completed registration
+- add toastConfig file
+- change register page 
+- change login
+
 ## [1.2.0] - (2024-03-28)
 - set up types and state managment
 - change index.js file

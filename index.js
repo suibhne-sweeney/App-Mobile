@@ -6,6 +6,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { configureStore } from '@reduxjs/toolkit';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import Toast from 'react-native-toast-message';
+import toastConfig from "~/configs/toastConfig"
+
 
 // https://docs.expo.dev/router/reference/troubleshooting/#expo_router_app_root-not-defined
 
@@ -32,6 +35,11 @@ export function App() {
       <PersistGate loading={null} persistor={persistor}>
         <ExpoRoot context={ctx} />
       </PersistGate>
+      <Toast 
+        config={toastConfig} 
+        position='bottom'
+        bottomOffset={90}
+      />
     </Provider>
   );
 }

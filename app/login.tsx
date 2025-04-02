@@ -8,6 +8,7 @@ import { H1, H3 } from "~/components/ui/typography";
 import { setLogin } from '~/store';
 import { useDispatch } from 'react-redux';
 import { useRouter } from "expo-router";
+import Toast from "react-native-toast-message";
 
 type FormData = {
   email: string;
@@ -42,7 +43,11 @@ export default function Login() {
         router.push("/")
       }
     } catch (error) {
-      console.log(error)
+      Toast.show({
+        type: 'error',
+        text1: 'Oops! Something went wrong.',
+        text2: `${error}`,
+      })
     }
   };
 
