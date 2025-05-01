@@ -1,0 +1,47 @@
+import { Link, useLocalSearchParams } from 'expo-router';
+import { View } from 'react-native';
+import { Text } from '~/components/ui/text';
+import { Button } from '~/components/ui/button';
+import Toast from 'react-native-toast-message';
+import { useEffect, useState } from 'react';
+import { User } from '~/types/User';
+import { useSelector } from 'react-redux';
+import { RootState } from '~/types/RootState';
+import UserWidget from '~/widget/UserWidget';
+import PostsWidget from '~/widget/PostsWidget';
+
+export default function Profile () {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const [user, setUser] = useState<User>();
+  const token = useSelector((state: RootState) => state.auth.token);
+  const PUBLIC_API_URI = process.env.EXPO_PUBLIC_API_URI;
+
+  const getUser = async () => {
+    try {
+      const response = await fetch(`${PUBLIC_API_URI}/api/users/getUser${id}`, {
+        method: "GET", 
+        headers: {Authorization: `Bearer ${token}`}
+      }); 
+      const data = await response.json()
+      if(data){
+        setUser(data);
+      }
+    } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: 'User not found',
+      });
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, [id]);
+
+  return (
+    <View className='w-full py-2 px-4'>
+      <UserWidget picturePath={user?.picturePath!} userId={user?.idString!} />
+      <PostsWidget isProfile={true} userId={user?.idString!}/>
+    </View>
+  );
+}

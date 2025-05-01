@@ -1,11 +1,15 @@
 export interface User{
-    _id: string,
+    id: {
+        timeStamp: Number,
+        creationTime: Date
+    },
+    idString: string,
     firstName: string,
     lastName: string,
     email: string,
     password: string,
     picturePath: string,
-    friends: [],
+    friends: string[],
     location: string,
     occupation: string,
     viewedProfile: Number,

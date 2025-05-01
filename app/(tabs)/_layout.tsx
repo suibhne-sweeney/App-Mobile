@@ -11,6 +11,8 @@ import { PortalHost } from '@rn-primitives/portal';
 import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
 import { Home, User, Search } from 'lucide-react-native';
 import { ThemeToggle } from '~/components/ThemeToggle';
+import { useSelector } from 'react-redux';
+import { RootState } from '~/types/RootState';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -30,6 +32,7 @@ export default function RootLayout() {
   const hasMounted = React.useRef(false);
   const { colorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
+  const id = useSelector((state: RootState) => state.auth.user?.idString);
 
   useIsomorphicLayoutEffect(() => {
     if (hasMounted.current) {
@@ -76,7 +79,8 @@ export default function RootLayout() {
           }}
         />
         <Tabs.Screen 
-          name="profile"
+          name="profile/[id]"
+          initialParams={{ id: id }}
           options={{
             title: 'Profile',
             headerRight: () => <ThemeToggle />,

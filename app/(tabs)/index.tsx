@@ -7,7 +7,7 @@ import { RootState } from '~/types/RootState';
 export default function Home() {
   const user = useSelector((state: RootState) => state.auth.user );
 
-  const fullName = `${user?.firstName} ${user?.lastName}`
+  const fullName = `${user?.firstName} ${user?.lastName} ${user?.idString}`
     return (
       <View>
         <Text>
