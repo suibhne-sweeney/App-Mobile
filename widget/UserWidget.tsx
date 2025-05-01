@@ -33,7 +33,7 @@ export default function UserWidget({ userId, picturePath }: UserProps) {
 
   const getUser = async () => {
     try {
-      const response = await fetch(`${PUBLIC_API_URI}/api/users/getUser${userId}`, {
+      const response = await fetch(`${PUBLIC_API_URI}/api/users/getUser/${userId}`, {
         method: "GET", 
         headers: {Authorization: `Bearer ${token}`}
       }); 
