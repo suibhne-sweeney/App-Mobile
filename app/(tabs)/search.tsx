@@ -11,8 +11,10 @@ import { RootState } from '~/types/RootState';
 import { User } from '~/types/User';
 import Toast from 'react-native-toast-message';
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 export default function Search() {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
@@ -80,7 +82,7 @@ export default function Search() {
       onPress={() => navigateToProfile(item.idString)}
       className="flex-row items-center p-4 border-b border-gray-200"
     >
-      <Avatar className="h-12 w-12 mr-4">
+      <Avatar className="h-12 w-12 mr-4" alt={`${item.firstName} ${item.lastName}`}>
         <AvatarImage 
           source={{ uri: item.picturePath ? `${PUBLIC_API_URI}/Public/${item.picturePath}` : undefined }} 
         />
@@ -90,7 +92,7 @@ export default function Search() {
       </Avatar>
       <View className="flex-1">
         <Text className="font-semibold">{item.firstName} {item.lastName}</Text>
-        <Text className="text-sm text-gray-500">{item.location || 'No location'}</Text>
+        <Text className="text-sm text-gray-500">{item.location || t('common.noLocation')}</Text>
       </View>
     </Pressable>
   );
@@ -99,7 +101,9 @@ export default function Search() {
     <View className="flex-1 justify-center items-center p-4">
       <SearchIcon size={48} className="text-gray-400 mb-4" />
       <Text className="text-gray-500 text-center">
-        {searchQuery.trim() ? `No users found matching "${searchQuery}"` : 'No users available'}
+      {searchQuery.trim() 
+          ? t('search.noUsersMatching', { query: searchQuery }) 
+          : t('search.noUsers')}      
       </Text>
     </View>
   );
@@ -110,7 +114,7 @@ export default function Search() {
         <SearchIcon size={20} className="text-muted-foreground mr-2" />
         <Input
           className="flex-1 bg-transparent border-0 p-0"
-          placeholder="Search for users..."
+          placeholder={t("search.placeholder")}
           value={searchQuery}
           onChangeText={setSearchQuery}
           placeholderTextColor="#9CA3AF"
@@ -120,7 +124,7 @@ export default function Search() {
       {isLoading ? (
         <View className="flex-1 justify-center items-center">
           <ActivityIndicator size="large" color="#0000ff" />
-          <Text className="mt-2 text-center text-gray-500">Loading users...</Text>
+          <Text className="mt-2 text-center text-gray-500">{t('search.loadingUsers')}</Text>
         </View>
       ) : (
         <FlatList

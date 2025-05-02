@@ -8,6 +8,7 @@ import { RootState } from '~/types/RootState';
 import UserWidget from '~/widget/UserWidget';
 import PostsWidget from '~/widget/PostsWidget';
 import { Text } from '~/components/ui/text';
+import { useTranslation } from "react-i18next";
 
 export default function Profile () {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -15,6 +16,7 @@ export default function Profile () {
   const [loading, setLoading] = useState(true);
   const token = useSelector((state: RootState) => state.auth.token);
   const PUBLIC_API_URI = process.env.EXPO_PUBLIC_API_URI;
+  const { t } = useTranslation();
 
   const getUser = async () => {
     try {
@@ -30,7 +32,7 @@ export default function Profile () {
     } catch (error) {
       Toast.show({
         type: 'error',
-        text1: 'User not found',
+        text1: t('error.userNotFound'),
       });
     }
   }
@@ -39,7 +41,7 @@ export default function Profile () {
     getUser();
   }, [id]);
 
-  if(loading){ return <Text>loading</Text> }
+  if(loading){ return <Text>{t('profile.loading')}</Text> }
 
   return (
     <View className='w-full py-2 px-4'>

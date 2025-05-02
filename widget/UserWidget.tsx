@@ -12,6 +12,7 @@ import { Button } from "~/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
 import { setLogout } from "~/store";
 import { router } from "expo-router";
+import { useTranslation } from "react-i18next";
 
 interface UserProps {
   userId: string;
@@ -20,6 +21,7 @@ interface UserProps {
 
 export default function UserWidget({ userId, picturePath }: UserProps) {
   const [user, setUser] = useState<User>();
+  const { t } = useTranslation();
   const token = useSelector((state: RootState) => state.auth.token);
   const PUBLIC_API_URI = process.env.EXPO_PUBLIC_API_URI;
   const fullName = `${user?.firstName} ${user?.lastName}`;
@@ -76,10 +78,10 @@ export default function UserWidget({ userId, picturePath }: UserProps) {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='w-64 native:w-72'>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>{t('profile.myAccount')}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem onPress={() => logout()}>
-                <Text>Logout</Text>
+                <Text>{t('profile.logout')}</Text>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -95,15 +97,15 @@ export default function UserWidget({ userId, picturePath }: UserProps) {
       <View className="flex flex-row justify-between items-center py-2">
         {loggedInUserId === userId ? (
           <Button className="w-[48%]" variant={"secondary"}>
-            <Text>Edit profile</Text>
+            <Text>{t('profile.editProfile')}</Text>
           </Button>
         ) : (
           <Button className="w-[48%]" variant={"secondary"}>
-            <Text>Friend</Text>
+            <Text>{t('profile.friend')}</Text>
           </Button>
         )}
         <Button className="w-[48%]" variant={"secondary"}>
-          <Text>Share profile</Text>
+          <Text>{t('profile.shareProfile')}</Text>
         </Button>
       </View>
       <Separator className="my-6" />  

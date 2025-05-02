@@ -9,6 +9,7 @@ import { setLogin } from '~/store';
 import { useDispatch } from 'react-redux';
 import { useRouter } from "expo-router";
 import Toast from "react-native-toast-message";
+import { useTranslation } from "react-i18next";
 
 type FormData = {
   email: string;
@@ -16,6 +17,8 @@ type FormData = {
 };
 
 export default function Login() {
+  const { t } = useTranslation();
+
   const {
     control,
     handleSubmit,
@@ -45,7 +48,7 @@ export default function Login() {
     } catch (error) {
       Toast.show({
         type: 'error',
-        text1: 'Oops! Something went wrong.',
+        text1: t('error.unknown'),
         text2: `${error}`,
       })
     }
@@ -54,10 +57,10 @@ export default function Login() {
   return (
     <View className="mx-4 my-24 p-1">
        <View className="items-center mb-4">
-        <H1 className="my-2">Sociopathy </H1>
-        <H3 className="my-2 font-bold">Welcome Back!</H3>
+        <H1 className="my-2">{t('app.name')}</H1>
+        <H3 className="my-2 font-bold">{t('login.welcome')}</H3>
         <Text className="mt-2 text-base text-muted-foreground">
-          Please login to your account
+          {t('login.prompt')}
         </Text>
       </View>
         <View className="w-full max-w-md p-6">
@@ -66,18 +69,18 @@ export default function Login() {
             control={control}
             name="email"
             rules={{
-              required: "Email is required",
+              required: t('validation.emailRequired'),
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "Invalid email format",
+                message: t('validation.invalidEmail'),
               },
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <View className="mb-4">
-                <Label className="mb-1 text-base font-semibold">Email</Label>
+                <Label className="mb-1 text-base font-semibold">{t('login.email')}</Label>
                 <Input
                   className="w-full border rounded-md p-2"
-                  placeholder="Enter your email"
+                  placeholder={t('login.emailPlaceholder')}
                   onBlur={onBlur}
                   onChangeText={onChange}
                   value={value}
@@ -95,15 +98,15 @@ export default function Login() {
             control={control}
             name="password"
             rules={{ 
-              required: "Password is required", 
-              minLength: { value: 4, message: 'Password too short'}
+              required: t('validation.passwordRequired'), 
+              minLength: { value: 4, message: t('validation.passwordTooShort')}
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <View className="mb-4">
-                <Label className="mb-1 text-base font-semibold">Password</Label>
+                <Label className="mb-1 text-base font-semibold">{t('login.password')}</Label>
                 <Input
                   className="w-full border rounded-md p-2"
-                  placeholder="Enter your password"
+                  placeholder={t('login.passwordPlaceholder')}
                   onBlur={onBlur}
                   onChangeText={onChange}
                   value={value}
@@ -118,14 +121,14 @@ export default function Login() {
 
           {/* Submit Button */}
           <Button className="mt-2" onPress={handleSubmit(onSubmit)}>
-            <Text>Submit</Text>
+            <Text>{t('login.submit')}</Text>
           </Button>
         </View>
       <View className="items-center">
         <Text className="text-sm text-muted-foreground">
-          Don't have an account?{' '}
+          {t('login.noAccount')}{' '}
           <Text onPress={() => router.push("/register")}>
-            Sign-up
+            {t('login.signUp')}
           </Text>
         </Text>
       </View>

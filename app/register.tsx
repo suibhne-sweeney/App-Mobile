@@ -12,12 +12,14 @@ import { useState } from "react";
 import { ChevronLeft } from '~/lib/icons/ChevronLeft';
 import { ImageUp } from '~/lib/icons/ImageUp';
 import * as ImagePicker from 'expo-image-picker';
+import { useTranslation } from 'react-i18next';
 
 interface FormData extends User {
   file?: ImagePicker.ImagePickerAsset;
 }
 
 export default function Register() {
+  const { t } = useTranslation();
   const {
     control,
     handleSubmit,
@@ -60,15 +62,15 @@ export default function Register() {
       if(registeredResponse){
         Toast.show({
           type: "success",
-          text1: "Great! You're registered.",
-          text2: `Welcome ${data.firstName}`
+          text1: t('register.success'),
+          text2: t('register.welcomeUser', {name: data.firstName})
         })
         router.push("/login")
       }
     } catch (error) {
       Toast.show({
         type: 'error',
-        text1: 'Oops! Something went wrong.',
+        text1: t('error.unknown'),
         text2: `${error}`,
       })
     }
@@ -82,10 +84,10 @@ export default function Register() {
           (step === 2 && "my-6")
         } p-1`}>
         <View className="items-center mb-4">
-          <H1 className="my-2">Sociopathy </H1>
-          <H3 className="my-2 font-bold">Hey There!</H3>
+          <H1 className="my-2">{t('app.name')}</H1>
+          <H3 className="my-2 font-bold">{t('register.welcome')}</H3>
           <Text className="mt-2 text-base text-muted-foreground">
-            Let's get you signed up 
+            {t('register.prompt')}
           </Text>
         </View>
         <View className="w-full max-w-md p-6">
@@ -96,18 +98,18 @@ export default function Register() {
                 control={control}
                 name="email"
                 rules={{
-                  required: "Email is required",
+                  required: t('validation.emailRequired'),
                   pattern: {
                     value: /\S+@\S+\.\S+/,
-                    message: "Invalid email format",
+                    message: t('validation.invalidEmail'),
                   },
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <View className="mb-4">
-                    <Label className="mb-1 text-base font-semibold">Email</Label>
+                    <Label className="mb-1 text-base font-semibold">{t('register.email')}</Label>
                     <Input
                       className="w-full border rounded-md p-2"
-                      placeholder="Enter your email"
+                      placeholder={t('register.emailPlaceholder')}
                       onBlur={onBlur}
                       onChangeText={onChange}
                       value={value}
@@ -123,7 +125,7 @@ export default function Register() {
                 const isValid = await trigger("email");
                 if (isValid) setStep(1);
               }}>
-                <Text>Next</Text>
+                <Text>{t('register.next')}</Text>
               </Button>
             </>
           )}
@@ -135,7 +137,7 @@ export default function Register() {
                 <Button variant={"ghost"} size={"icon"} onPress={() => setStep(0)}>
                   <ChevronLeft className='text-foreground' />
                 </Button>
-                <P className="px-3">2 of 3</P>
+                <P className="px-3">{t('register.step2')}</P>
               </View>
               <Controller
                 control={control}
@@ -165,7 +167,7 @@ export default function Register() {
                 const isValid = await trigger("password");
                 if (isValid) setStep(2);
               }}>
-                <Text>Next</Text>
+                <Text>{t('register.next')}</Text>
               </Button>
             </>
           )}
@@ -177,21 +179,21 @@ export default function Register() {
                 <Button variant={"ghost"} size={"icon"} onPress={() => setStep(1)}>
                   <ChevronLeft className='text-foreground' />
                 </Button>
-                <P className="px-3">3 of 3</P>
+                <P className="px-3">{t('register.step3')}</P>
               </View>
               <View className="flex flex-row justify-between items-center">
                 <Controller
                   control={control}
                   name="firstName"
                   rules={{ 
-                    required: "First Name is required", 
+                    required: t('validation.firstNameRequired'), 
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <View className="mb-4 mt-2 w-[48%]">
-                      <Label className="mb-1 text-base font-semibold">First Name</Label>
+                      <Label className="mb-1 text-base font-semibold">{t('register.firstName')}</Label>
                       <Input
                         className="w-full border rounded-md p-2"
-                        placeholder="John"
+                        placeholder={t('register.firstNamePlaceholder')}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -206,14 +208,14 @@ export default function Register() {
                   control={control}
                   name="lastName"
                   rules={{ 
-                    required: "Last Name is required", 
+                    required: t('validation.lastNameRequired'), 
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <View className="mb-4 mt-2 w-[48%]">
-                      <Label className="mb-1 text-base font-semibold">Last Name</Label>
+                      <Label className="mb-1 text-base font-semibold">{t('register.lastName')}</Label>
                       <Input
                         className="w-full border rounded-md p-2"
-                        placeholder="Doe"
+                        placeholder={t('register.lastNamePlaceholder')}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -229,11 +231,11 @@ export default function Register() {
                 control={control}
                 name="file"
                 rules={{ 
-                  required: "Image required", 
+                  required: t('validation.imageRequired'), 
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <View className="mb-4 mt-2 w-full">
-                    <Label className="mb-1 text-base font-semibold">Upload Profile</Label>
+                    <Label className="mb-1 text-base font-semibold">{t('register.profilePicture')}</Label>
                     <Button
                       variant={"outline"}
                       onBlur={onBlur} 
@@ -254,8 +256,8 @@ export default function Register() {
                         }else{
                           Toast.show({
                             type: 'error',
-                            text1: 'Permission Denied',
-                            text2: `Sorry, we need media library permissions to use this feature.`,
+                            text1: t('permissions.denied'),
+                            text2: t('permissions.mediaLibraryNeeded'),
                           })
                         }
                       }}
@@ -277,14 +279,14 @@ export default function Register() {
                   control={control}
                   name="location"
                   rules={{ 
-                    required: "Location is required", 
+                    required: t('validation.locationRequired'), 
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <View className="mb-4 mt-2 w-[48%]">
-                      <Label className="mb-1 text-base font-semibold">Location</Label>
+                      <Label className="mb-1 text-base font-semibold">{t('register.location')}</Label>
                       <Input
                         className="w-full border rounded-md p-2"
-                        placeholder="Your Location"
+                        placeholder={t('register.locationPlaceholder')}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -299,14 +301,14 @@ export default function Register() {
                   control={control}
                   name="occupation"
                   rules={{ 
-                    required: "Occupation is required", 
+                    required: t('validation.occupationRequired'), 
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <View className="mb-4 mt-2 w-[48%]">
-                      <Label className="mb-1 text-base font-semibold">Occupation</Label>
+                      <Label className="mb-1 text-base font-semibold">{t('register.occupation')}</Label>
                       <Input
                         className="w-full border rounded-md p-2"
-                        placeholder="Your Occupation"
+                        placeholder={t('register.occupationPlaceholder')}
                         onBlur={onBlur}
                         onChangeText={onChange}
                         value={value}
@@ -320,7 +322,7 @@ export default function Register() {
               </View>
 
               <Button className="mt-2" onPress={handleSubmit(onSubmit)}>
-                <Text>Submit</Text>
+                <Text>{t('register.submit')}</Text>
               </Button>
             </>
           )}
@@ -329,7 +331,7 @@ export default function Register() {
 
           <View className="items-center mb-4">
             <Text className="mt-2 text-base text-muted-foreground">
-              We can't wait to have you!
+              {t('register.welcomeMessage')}
             </Text>
           </View>
         </View>

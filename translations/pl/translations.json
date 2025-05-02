@@ -1,0 +1,119 @@
+{
+    "app": {
+      "name": "Socjopata"
+    },
+    "error": {
+      "unknown": "Wystąpił błąd",
+      "userNotFound": "Nie znaleziono użytkownika",
+      "networkError": "Błąd sieci",
+      "serverError": "Błąd serwera"
+    },
+    "common": {
+      "loading": "Ładowanie...",
+      "error": "Błąd",
+      "noResults": "Nie znaleziono wyników",
+      "noLocation": "Brak lokalizacji",
+      "search": "Szukaj",
+      "cancel": "Anuluj",
+      "save": "Zapisz",
+      "delete": "Usuń",
+      "edit": "Edytuj"
+    },
+    "search": {
+      "placeholder": "Szukaj użytkowników...",
+      "noUsers": "Brak dostępnych użytkowników",
+      "noUsersMatching": "Nie znaleziono użytkowników pasujących do \"{{query}}\"",
+      "loadingUsers": "Ładowanie użytkowników..."
+    },
+    "profile": {
+      "editProfile": "Edytuj profil",
+      "friend": "Znajomy",
+      "shareProfile": "Udostępnij profil",
+      "friends": "{{count}} znajomy",
+      "friends_plural": "{{count}} znajomych",
+      "logout": "Wyloguj się",
+      "myAccount": "Moje konto",
+      "loading": "Ładowanie profilu..."
+    },
+    "posts": {
+      "noPosts": "Brak postów do wyświetlenia",
+      "createPost": "Utwórz post",
+      "deletePost": "Usuń post",
+      "editPost": "Edytuj post",
+      "likePost": "Polub post",
+      "addComment": "Dodaj komentarz",
+      "sharePost": "Udostępnij post"
+    },
+    "login": {
+      "login": "Zaloguj się",
+      "welcome": "Witaj ponownie!",
+      "prompt": "Zaloguj się na swoje konto",
+      "email": "Email",
+      "emailPlaceholder": "Wpisz swój email",
+      "password": "Hasło",
+      "passwordPlaceholder": "Wpisz swoje hasło",
+      "submit": "Zaloguj się",
+      "noAccount": "Nie masz konta?",
+      "signUp": "Zarejestruj się",
+      "forgotPassword": "Zapomniałeś hasła?"
+    },
+    "register": {
+      "register": "Zarejestruj się",
+      "welcome": "Cześć!",
+      "prompt": "Zarejestrujmy Cię",
+      "step1": "1 z 3",
+      "step2": "2 z 3",
+      "step3": "3 z 3",
+      "email": "Email",
+      "emailPlaceholder": "Wpisz swój email",
+      "password": "Hasło",
+      "passwordPlaceholder": "Wpisz swoje hasło",
+      "confirmPassword": "Potwierdź hasło",
+      "confirmPasswordPlaceholder": "Potwierdź swoje hasło",
+      "firstName": "Imię",
+      "firstNamePlaceholder": "Jan",
+      "lastName": "Nazwisko",
+      "lastNamePlaceholder": "Kowalski",
+      "location": "Lokalizacja",
+      "locationPlaceholder": "Twoja lokalizacja",
+      "occupation": "Zawód",
+      "occupationPlaceholder": "Twój zawód",
+      "profilePicture": "Dodaj zdjęcie profilowe",
+      "selectImage": "Wybierz zdjęcie",
+      "submit": "Zatwierdź",
+      "next": "Dalej",
+      "back": "Wstecz",
+      "welcomeMessage": "Nie możemy się doczekać, aż dołączysz!",
+      "success": "Rejestracja zakończona",
+      "welcomeUser": "Witaj {{name}}! Cieszymy się, że jesteś z nami."
+    },
+    "validation": {
+      "emailRequired": "Email jest wymagany",
+      "invalidEmail": "Niepoprawny format emaila",
+      "passwordRequired": "Hasło jest wymagane",
+      "passwordTooShort": "Hasło musi mieć co najmniej 4 znaki",
+      "passwordsDoNotMatch": "Hasła nie są takie same",
+      "firstNameRequired": "Imię jest wymagane",
+      "lastNameRequired": "Nazwisko jest wymagane",
+      "locationRequired": "Lokalizacja jest wymagana",
+      "occupationRequired": "Zawód jest wymagany",
+      "imageRequired": "Zdjęcie profilowe jest wymagane"
+    },
+    "notFound": {
+      "title": "Nie znaleziono",
+      "message": "Ta strona nie istnieje.",
+      "goBack": "Wróć do strony głównej"
+    },
+    "permissions": {
+        "denied": "Brak uprawnień",
+        "mediaLibraryNeeded": "Przepraszamy, potrzebujemy uprawnień do biblioteki mediów, aby korzystać z tej funkcji."
+      },
+      "navigation": {
+        "home": "Strona główna",
+        "search": "Szukaj",
+        "profile": "Profil",
+        "notifications": "Powiadomienia",
+        "messages": "Wiadomości",
+        "settings": "Ustawienia"
+      }
+  }
