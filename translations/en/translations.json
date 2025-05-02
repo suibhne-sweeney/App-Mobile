@@ -1,0 +1,119 @@
+{
+    "app": {
+      "name": "Sociopathy"
+    },
+    "error": {
+      "unknown": "An error occurred",
+      "userNotFound": "User not found",
+      "networkError": "Network error",
+      "serverError": "Server error"
+    },
+    "common": {
+      "loading": "Loading...",
+      "error": "Error",
+      "noResults": "No results found",
+      "noLocation": "No location",
+      "search": "Search",
+      "cancel": "Cancel",
+      "save": "Save",
+      "delete": "Delete",
+      "edit": "Edit"
+    },
+    "search": {
+      "placeholder": "Search for users...",
+      "noUsers": "No users available",
+      "noUsersMatching": "No users found matching \"{{query}}\"",
+      "loadingUsers": "Loading users..."
+    },
+    "profile": {
+      "editProfile": "Edit profile",
+      "friend": "Friend",
+      "shareProfile": "Share profile",
+      "friends": "{{count}} friend",
+      "friends_plural": "{{count}} friends",
+      "logout": "Logout",
+      "myAccount": "My Account",
+      "loading": "Loading profile..."
+    },
+    "posts": {
+      "noPosts": "No posts to display",
+      "createPost": "Create Post",
+      "deletePost": "Delete Post",
+      "editPost": "Edit Post",
+      "likePost": "Like Post",
+      "addComment": "Add Comment",
+      "sharePost": "Share Post"
+    },
+    "login": {
+      "login": "Login",
+      "welcome": "Welcome Back!",
+      "prompt": "Please login to your account",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "submit": "Submit",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign-up",
+      "forgotPassword": "Forgot password?"
+    },
+    "register": {
+      "signup": "Sign Up",
+      "welcome": "Hey There!",
+      "prompt": "Let's get you signed up",
+      "step1": "1 of 3",
+      "step2": "2 of 3",
+      "step3": "3 of 3",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "John",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Doe",
+      "location": "Location",
+      "locationPlaceholder": "Your Location",
+      "occupation": "Occupation",
+      "occupationPlaceholder": "Your Occupation",
+      "profilePicture": "Upload Profile",
+      "selectImage": "Select Image",
+      "submit": "Submit",
+      "next": "Next",
+      "back": "Back",
+      "welcomeMessage": "We can't wait to have you!",
+      "success": "Registration successful",
+      "welcomeUser": "Welcome {{name}}! We're glad to have you here."
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "invalidEmail": "Invalid email format",
+      "passwordRequired": "Password is required",
+      "passwordTooShort": "Password must be at least 4 characters",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "firstNameRequired": "First Name is required",
+      "lastNameRequired": "Last Name is required",
+      "locationRequired": "Location is required",
+      "occupationRequired": "Occupation is required",
+      "imageRequired": "Profile image is required"
+    },
+    "notFound": {
+      "title": "Not Found",
+      "message": "This page doesn't exist.",
+      "goBack": "Go back to home screen"
+    },
+    "permissions": {
+        "denied": "Permission Denied",
+        "mediaLibraryNeeded": "Sorry, we need media library permissions to use this feature."
+      },
+    "navigation": {
+      "home": "Home",
+      "search": "Search",
+      "profile": "Profile",
+      "settings": "Settings",
+      "messages": "Messages",
+      "notifications": "Notifications"
+    }
+  }

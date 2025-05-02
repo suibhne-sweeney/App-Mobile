@@ -10,6 +10,7 @@ import { useColorScheme } from '~/lib/useColorScheme';
 import { PortalHost } from '@rn-primitives/portal';
 import { ThemeToggle } from '~/components/ThemeToggle';
 import { setAndroidNavigationBar } from '~/lib/android-navigation-bar';
+import { useTranslation } from 'react-i18next';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -26,6 +27,7 @@ export {
 } from 'expo-router';
 
 export default function RootLayout() {
+  const { t } = useTranslation();
   const hasMounted = React.useRef(false);
   const { colorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
@@ -55,21 +57,22 @@ export default function RootLayout() {
         <Stack.Screen
           name="(tabs)"
           options={{ 
-            title: "Back",
+            title: t('navigation.home'),
+            tabBarLabel: t('navigation.home'),
             headerShown: false 
           }}
         />
         <Stack.Screen
           name='login'
           options={{
-            title: "Login",
+            title: t('login.login'),
             headerRight: () => <ThemeToggle />,
           }}
         />
         <Stack.Screen
           name='register'
           options={{
-            title: "Sign-Up",
+            title: t('register.register'),
             headerRight: () => <ThemeToggle />,
           }}
         />

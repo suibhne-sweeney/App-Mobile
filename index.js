@@ -8,7 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import Toast from 'react-native-toast-message';
 import toastConfig from "~/configs/toastConfig"
-
+import './translations/translate'
 
 // https://docs.expo.dev/router/reference/troubleshooting/#expo_router_app_root-not-defined
 

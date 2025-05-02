@@ -1,10 +1,11 @@
 import '~/global.css';
 
 import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
-import { Tabs } from 'expo-router';
+import { Tabs, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, View, Text } from 'react-native';
+
 import { NAV_THEME } from '~/lib/constants';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { PortalHost } from '@rn-primitives/portal';
@@ -13,6 +14,8 @@ import { Home, User, Search } from 'lucide-react-native';
 import { ThemeToggle } from '~/components/ThemeToggle';
 import { useSelector } from 'react-redux';
 import { RootState } from '~/types/RootState';
+import { LanguageSelector } from '~/components/LanguageSelector';
+import { useTranslation } from 'react-i18next';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -29,6 +32,7 @@ export {
 } from 'expo-router';
 
 export default function RootLayout() {
+  const { t } = useTranslation();
   const hasMounted = React.useRef(false);
   const { colorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
@@ -59,9 +63,14 @@ export default function RootLayout() {
         <Tabs.Screen 
           name='index'
           options={{
-            title: 'Home',
-            headerRight: () => <ThemeToggle />,
-            tabBarLabel: "Home",
+            title: t('navigation.home'),
+            headerRight: () => (
+              <View className="flex-row items-center space-x-2 mr-2">
+                <ThemeToggle /> 
+                <LanguageSelector/>
+              </View>
+            ),
+            tabBarLabel: t('navigation.home'),
             tabBarIcon: (tabInfo) => (
               <Home color={tabInfo.color} size={tabInfo.focused ? 22 : 20} />
             ),
@@ -70,9 +79,14 @@ export default function RootLayout() {
         <Tabs.Screen 
           name="search"
           options={{
-            title: 'Search',
-            headerRight: () => <ThemeToggle />,
-            tabBarLabel: "Search",
+            title: t('navigation.search'),
+            headerRight: () => (
+              <View className="flex-row items-center space-x-2 mr-2">
+                <ThemeToggle /> 
+                <LanguageSelector/>
+              </View>
+            ),
+            tabBarLabel: t('navigation.search'),
             tabBarIcon: (tabInfo) => (
               <Search color={tabInfo.color} size={tabInfo.focused ? 22 : 20} />
             ),
@@ -82,15 +96,21 @@ export default function RootLayout() {
           name="profile/[id]"
           initialParams={{ id: id }}
           options={{
-            title: 'Profile',
-            headerRight: () => <ThemeToggle />,
-            tabBarLabel: "Profile",
+            title: t('navigation.profile'),
+            headerRight: () => (
+              <View className="flex-row items-center space-x-2 mr-2">
+                <ThemeToggle /> 
+                <LanguageSelector/>
+              </View>
+            ),
+            tabBarLabel: t('navigation.profile'),
             tabBarIcon: (tabInfo) => (
               <User color={tabInfo.color} size={tabInfo.focused ? 22 : 20} />
             ),
           }}
         />
       </Tabs>
+      
       <PortalHost />
     </ThemeProvider>
   );

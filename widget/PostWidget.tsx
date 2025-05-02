@@ -12,6 +12,7 @@ import { MessageCircle } from "~/lib/icons/MessageCircle";
 import { Share2 } from "~/lib/icons/Share2";
 import { RootState } from "~/types/RootState";
 import * as Animatable from 'react-native-animatable';
+import { useTranslation } from "react-i18next";
 
 interface PostProps {
   postId: string,
@@ -36,6 +37,7 @@ export default function PostWidget({
   likes, 
   comments
 } : PostProps){
+  const { t } = useTranslation();
   const PUBLIC_API_URI = process.env.EXPO_PUBLIC_API_URI;
   const [isComments, setIsComments] = useState(false);
   const loggedInUserId = useSelector((state: RootState) => state.auth.user?.idString)
@@ -103,7 +105,7 @@ export default function PostWidget({
           className="mt-2"
           style={{zIndex: 0}} 
         >
-          <Text style={{marginLeft: 5}}>Comments</Text>
+          <Text style={{marginLeft: 5}}>{t('posts.comments')}</Text>
           <Separator className="mb-1" />
           {comments.map((comment, i) => (
             <View key={i} style={{marginLeft: 15, maxWidth: 300, width: "auto", alignSelf: "flex-start"}} className="rounded-md bg-muted my-2 px-4 py-2">
