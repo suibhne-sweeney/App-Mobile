@@ -80,7 +80,7 @@ export default function Search() {
       onPress={() => navigateToProfile(item.idString)}
       className="flex-row items-center p-4 border-b border-gray-200"
     >
-      <Avatar className="h-12 w-12 mr-4">
+      <Avatar className="h-12 w-12 mr-4" alt={''}>
         <AvatarImage 
           source={{ uri: item.picturePath ? `${PUBLIC_API_URI}/Public/${item.picturePath}` : undefined }} 
         />
